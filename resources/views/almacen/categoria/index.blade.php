@@ -64,9 +64,9 @@
                                     @foreach($categoria as $cat)
                                     <tr>
                                         <td>
-                                            <a href="a" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                            <a href="{{ route('categoria.edit', $cat->id_categoria) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                             <!-- Button trigger -->
-                                            <a href="a" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="modal-delete">Eliminar</button>
                                         </td>
                                         <td>{{ $cat->id_categoria}}</td>
                                         <td>{{ $cat->categoria}}</td>
