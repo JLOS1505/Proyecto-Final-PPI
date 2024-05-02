@@ -101,7 +101,7 @@ class ProductoController extends Controller
         //
         $producto = Producto::findOrFail($id);
         $categorias = DB::table('categoria')->where('estatus','=','1')->get();
-        return view("almacen.producto.edit", ["producto"=>$producto, "categorias"=>categorias]);
+        return view("almacen.producto.edit", ["producto"=>$producto, "categorias"=>$categorias]);
      }
 
      /**

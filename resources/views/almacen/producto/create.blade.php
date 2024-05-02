@@ -41,24 +41,14 @@
                             <input type="text" class="form-control" name="stock" id="stock" placeholder="Ingrese el stock del producto">
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="unidad">Unidad</label>
-                            <select name="unidad" class="form-control" id="unidad">
-                                <option>Piezas</option>
-                                <option>Kilos</option>
-                                <option>Cajas</option>
-                                <option>Paquetes</option>
-                            </select>
-                        </div>
-                    </div>
+ 
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
                             <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Ingrese la descripción del producto">
                         </div>
                     </div>
-                    <div class="col-md-12 col-12">
+                    <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="descripcion">Imagen</label>
                             <input type="file" class="form-control" id="imagen" name="imagen">
