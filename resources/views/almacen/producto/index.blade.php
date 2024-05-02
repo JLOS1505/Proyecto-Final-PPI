@@ -75,7 +75,7 @@
                                         <td>{{ $prod->nombre}}</td>
                                         <td>{{ $prod->descripcion}}</td>
                                         <td>{{ $prod->stock}}</td>
-                                        <td>{{ $prod->imagen}}</td>
+                                        <td><img src="{{asset('imagenes/productos/'.$prod->imagen)}}" alt="{{ $prod->nombre }}" height="70px" width="70px" class="img-thumbnail"></td>
                                         <td>{{ $prod->estado}}</td>
                                     </tr>
                                     <!-- En esta linea va el modal -->
