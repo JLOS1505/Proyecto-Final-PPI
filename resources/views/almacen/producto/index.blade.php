@@ -69,7 +69,7 @@
                                         <td>
                                             <a href="{{ route('producto.edit', $prod->id_producto) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                             <!-- Button trigger -->
-                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#">Eliminar</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $prod->id_producto }}" class="fas fa-trash-alt">Eliminar</button>
                                         </td>
                                         <td>{{ $prod->codigo}}</td>
                                         <td>{{ $prod->nombre}}</td>
@@ -78,7 +78,7 @@
                                         <td><img src="{{asset('imagenes/productos/'.$prod->imagen)}}" alt="{{ $prod->nombre }}" height="70px" width="70px" class="img-thumbnail"></td>
                                         <td>{{ $prod->estado}}</td>
                                     </tr>
-                                    <!-- En esta linea va el modal -->
+                                    @include('almacen.producto.modal')
                                     @endforeach
                                 </tbody>
                               </table>
