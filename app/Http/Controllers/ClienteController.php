@@ -87,14 +87,13 @@ class ClienteController extends Controller
     {
         //
         $cliente=Cliente::findOrFail($id);
-        $cliente->tipo_persona=$request->get('tipo_persona');
-        $cliente->nombre=$request->get('nombre');
-        $cliente->tipo_documento->get('tipo_documento');
-        $cliente->num_documento->get('num_documento');
-        $cliente->direccion->get('direccion');
-        $cliente->telefono->get('telefono');
-        $cliente->email->get('email');
-        $categoria->update();
+        $cliente->nombre=$request->input('nombre');
+        $cliente->tipo_documento=$request->input('tipo_documento');
+        $cliente->num_documento=$request->input('num_documento');
+        $cliente->direccion=$request->input('direccion');
+        $cliente->telefono=$request->input('telefono');
+        $cliente->email=$request->input('email');
+        $cliente->update();
         return Redirect::to('ventas/clientes');
 
     }
