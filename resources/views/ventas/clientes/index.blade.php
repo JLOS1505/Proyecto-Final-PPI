@@ -69,7 +69,7 @@
                                         <td>
                                             <a href="{{ route('clientes.edit', $cli->id_persona)}}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                             <!-- Button trigger -->
-                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#">Eliminar</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $cli->id_persona }}">Eliminar</button>
                                         </td>
                                         <td>{{ $cli->nombre}}</td>
                                         <td>{{ $cli->tipo_documento}}</td>
@@ -78,7 +78,7 @@
                                         <td>{{ $cli->telefono}}</td>
                                         <td>{{ $cli->email}}</td>
                                     </tr>
-                                   
+                                    @include('ventas.clientes.modal')
                                     @endforeach
                                 </tbody>
                               </table>
