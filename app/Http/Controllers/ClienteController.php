@@ -77,7 +77,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-                                    //Checar si es cliente o clientes
+        
         return view("ventas.clientes.edit", ["clientes"=>Cliente::findOrFail($id)]);
     }
 
