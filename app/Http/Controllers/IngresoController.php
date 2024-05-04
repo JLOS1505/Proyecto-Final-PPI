@@ -143,12 +143,13 @@ class IngresoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
         $ingreso=Ingreso::findOrFail($id);
         $ingreso->estado='C';
         $ingreso->update();
-        return Redirect::to('compras/ingreso');
+        //return Redirect::to('compras/ingreso');
+        return redirect()->route('ingreso.index');
     }
 }

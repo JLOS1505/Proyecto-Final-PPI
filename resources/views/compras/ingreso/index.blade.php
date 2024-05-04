@@ -67,7 +67,7 @@
                                         <td>
                                             <a href="{{route('ingreso.show', $ing->id_ingreso)}}" class="btn btn-outline-info btn-sm">Detalle</a>
                                             <!-- Button trigger -->
-                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#">Eliminar</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $ing->id_ingreso }}">Eliminar</button>
                                         </td>
                                         <td>{{ $ing->fecha_hora}}</td>
                                         <td>{{ $ing->nombre}}</td>
@@ -77,7 +77,7 @@
                                         <td>{{ $ing->estado}}</td>
 
                                     </tr>
-
+                                    @include('compras.ingreso.modal')
                                     @endforeach
                                 </tbody>
                             </table>
