@@ -113,12 +113,12 @@ class IngresoController extends Controller
         ->select('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado', DB::raw('sum(di.cantidad*di.precio_compra) as total'))
         ->where('i.id_ingreso', "=", $id)
         ->groupBy('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado')
-        ->orderBy('i.id_ingreso', 'desc')
+        ->orderBy('i.id_ingreso', 'asc')
         ->first();
         
         $detalles = DB::table('detalle_ingreso as d')
-        ->join('producto as p', 'd.id_producto', '=', 'p.id.producto')
-        ->select('a.nombre as producto', 'd.cantidad', 'd.precio_compra', 'd.precio_venta')
+        ->join('producto as p', 'd.id_producto', '=', 'p.id_producto')
+        ->select('p.nombre as producto', 'd.cantidad', 'd.precio_compra', 'd.precio_venta')
         ->where('d.id_ingreso', '=', $id)
         ->get();
         return view('compras.ingreso.show', ["ingreso"=>$ingreso, "detalles"=>$detalles]);
