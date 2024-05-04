@@ -34,7 +34,7 @@ class IngresoController extends Controller
         ->select('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado', DB::raw('sum(di.cantidad*di.precio_compra) as total'))
         ->where('i.num_comprobante', 'LIKE', '%'.$query.'%')
         ->groupBy('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado')
-        ->orderBy('i.id_ingreso', 'desc')
+        ->orderBy('i.id_ingreso', 'asc')
         ->paginate(15);
         return view('compras.ingreso.index',["ingresos"=>$ingresos,"texto"=>$query]);
         }
@@ -47,7 +47,7 @@ class IngresoController extends Controller
     public function create()
     {
         //
-        $personas=DB::table('persona')->where('tipo_persona', '=', 'proveedor')->get();
+        $personas=DB::table('persona')->where('tipo_persona', '=', 'Proveedor')->get();
         $ingreso = Ingreso::all();
             $productos=DB::table('producto as p')
             ->select(DB::raw('CONCAT(p.codigo,"",p.nombre) AS Articulo'), 'p.id_producto','p.stock')
@@ -83,8 +83,8 @@ class IngresoController extends Controller
 
             while($cont < count($id_articulo)) {
                 $detalle = new DetalleIngreso();
-                $detalle -> id_ingreso = $ingreso -> idingreso;
-                $detalle -> idarticulo = $id_articulo($cont);
+                $detalle -> id_ingreso = $ingreso -> id_ingreso;
+                $detalle -> id_articulo = $id_articulo($cont);
                 $detalle -> cantidad = $cantidad($cont);
                 $detalle -> precio_compra = $precio_compra($cont);
                 $detalle -> precio_venta = $precio_venta($cont);
