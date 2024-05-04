@@ -50,7 +50,7 @@ class IngresoController extends Controller
         $personas=DB::table('persona')->where('tipo_persona', '=', 'Proveedor')->get();
         $ingreso = Ingreso::all();
             $productos=DB::table('producto as p')
-            ->select(DB::raw('CONCAT(p.codigo,"",p.nombre) AS Articulo'), 'p.id_producto','p.stock')
+            ->select(DB::raw('CONCAT(p.codigo," ",p.nombre) AS Articulo'), 'p.id_producto','p.stock')
             ->where('p.estado','=','Activo')
             ->get();
             return view("compras.ingreso.create", ["personas"=>$personas,"productos"=>$productos,"ingreso"=>$ingreso]);
@@ -66,34 +66,34 @@ class IngresoController extends Controller
             DB::beginTransaction();
             $ingreso= new Ingreso;
             $ingreso->id_proveedor=$request->get('id_proveedor');
-            $ingreso->tipo_comprobante=$request->get('tipo_comprobante');
-            $ingreso->num_comprobante=$request->get('num_comprobante');
+            $ingreso->tipo_comprobante=$request->get('tipo_documento');
+            $ingreso->num_comprobante=$request->get('num_documento');
             $mytime = Carbon::now('America/Mexico_City');
             $ingreso->fecha_hora=$mytime->toDateTimeString();
             $ingreso->impuesto='16';
             $ingreso->estado='A';
             $ingreso->save();
 
-            $id_articulo = $request->get('id_articulo');
+            $id_producto = $request->get('idarticulo');
             $cantidad = $request->get('cantidad');
             $precio_compra = $request->get('precio_compra');
             $precio_venta = $request->get('precio_venta');
 
             $cont = 0;
 
-            while($cont < count($id_articulo)) {
+            while($cont < count($id_producto)) {
                 $detalle = new DetalleIngreso();
                 $detalle -> id_ingreso = $ingreso -> id_ingreso;
-                $detalle -> id_articulo = $id_articulo($cont);
-                $detalle -> cantidad = $cantidad($cont);
-                $detalle -> precio_compra = $precio_compra($cont);
-                $detalle -> precio_venta = $precio_venta($cont);
+                $detalle -> id_producto = $id_producto[$cont];
+                $detalle -> cantidad = $cantidad[$cont];
+                $detalle -> precio_compra = $precio_compra[$cont];
+                $detalle -> precio_venta = $precio_venta[$cont];
                 $detalle -> save();
                 $cont = $cont+1;
             }
 
             DB::commit();
-        }catch(\Exception $e)
+        }catch (\Throwable $th)
         {
             DB::rollBack();
         }

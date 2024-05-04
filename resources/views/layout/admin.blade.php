@@ -267,6 +267,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/proyecto_final/public/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+@stack('scripts')
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
