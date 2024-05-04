@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/proyecto_final/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/proyecto_final/public/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/proyecto_final/public/dist/css/bootstrap-select.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/proyecto_final/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -271,6 +272,7 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/proyecto_final/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/proyecto_final/public/dist/js/bootstrap-select.min.js">
 <!-- ChartJS -->
 <script src="/proyecto_final/public/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
