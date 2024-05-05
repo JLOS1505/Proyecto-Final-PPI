@@ -16,7 +16,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                            <select name="id_proveedor" class="form-control" id="tipo_documento">
+                            <select name="id_proveedor" class="form-control" id="id_proveedor">
                                     @foreach($personas as $persona)
                                         <option value="{{$persona->id_persona}}">{{$persona->nombre}}</option>
                                     @endforeach

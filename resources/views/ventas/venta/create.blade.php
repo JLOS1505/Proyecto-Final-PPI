@@ -45,7 +45,7 @@
                                 <label for="producto">Productos</label>
                                 <select name="pidarticulo" class="form-control selectpicker" id="pidarticulo" data-live-search="true">
                                         @foreach($productos as $producto)
-                                            <option value="{{$producto->id_producto}}">{{$producto->Articulo}}</option>
+                                            <option value="{{$producto->id_producto}}_{{$producto->stock}}_{{$producto->precio_promedio}}">{{$producto->Articulo}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -119,7 +119,7 @@
                         <div class="form-group">
                             <div class="card-footer">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-success me-1 mb-1">Guardar</button>
+                                <button id="guardar" type="submit" class="btn btn-success me-1 mb-1">Guardar</button>
                                 <button type="reset" class="btn btn-danger me-1 mb-1">Cancelar</button>
                             </div>
                         </div>
@@ -143,6 +143,15 @@
         });
     });
 
+    $('#bt_guar').click(function(){
+        swal({
+            title: 'Su cambio es|',
+            text: "Gracias por su compra",
+            type: 'success'
+        })
+
+    });
+
     var cont = 0;
     total = 0;
     subtotal = [];
@@ -152,56 +161,77 @@
 
     function mostrarValores(){
         datosArticulo=document.getElementById('pidarticulo').value.split('_');
-        $("#pcantidad").val(datosArticulo[1]);
-        $("#unidad").val(datosArticulo[2]);
-
+        $("#pprecio_venta").val(datosArticulo[2]);
+        $("#pstock").val(datosArticulo[1]);
     }
 
     function agregar(){
         
         datosArticulo=document.getElementById('pidarticulo').value.split('_');
+        
         idarticulo=datosArticulo[0];
         articulo=$("#pidarticulo option:selected").text();
-        
-        cantidad=$("#pcantidad").val();
-        precio_compra=$("#pprecio_compra").val();
+        cantidad=parseInt($("#pcantidad").val());
+        descuento=$("#pdescuento").val();
         precio_venta=$("#pprecio_venta").val();
+        stock=parseInt($("#pstock").val());
+        unidad=datosArticulo[3];
         
-        if (idarticulo != "" && cantidad != "" && cantidad > 0 && precio_compra != "" && precio_venta != ""){
-           
-            subtotal[cont]=(cantidad * precio_compra);
-            total= total + subtotal[cont];
-           
-            var fila='<tr class="selected" id="fila'+cont+
-                '"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont+ 
-                ')";>Eliminar</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+
-                            '</td><td><input type="number" name="cantidad[]" value="'+cantidad+
-                                '"></td> <td><input type="number" name="precio_compra[]" value="'+precio_compra+
-                                    '"></td> <td> <input type="number" name="precio_venta[]" value="'+precio_venta+
-                                        '"></td><td>'+subtotal[cont]+'</td></tr>';
-             cont++;
-             limpiar();
-             $("#total").html("$ "+ total);
-             evaluar();
-             $("#detalles").append(fila);
-       
-        }else{
-            alert("Error al ingresar el detalle del artículo, revise los datos del artículo");
-        }
+        if (idarticulo != "" && cantidad != "" && cantidad > 0 && descuento != "" && precio_venta != ""){
+        
+            console.log(cantidad);
+            console.log(stock);
+            console.log(unidad);
+            if(unidad === 'Kilos'){
+                cantidadfinal = cantidad / 1000;
+            }
+            else
+            {
+                cantidadfinal = cantidad;
+            }
+            if(cantidadfinal < stock){
+                subtotal[cont] = (cantidadfinal*precio_venta-descuento);
+                total=total+subtotal[cont];
 
-    }
+                var fila='<tr class="selected" id="fila'+cont+
+                '"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont+ 
+                ')";>Eliminar</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+idarticulo+
+                            '</td><td><input type="number" name="cantidad[]" value="'+cantidadfinal+
+                                '"></td> <td><input type="number" name="precio_venta[]" value="'+precio_venta+
+                                    '"></td> <td> <input type="number" name="descuento[]" value="'+descuento+
+                                        '"></td><td>'+subtotal[cont]+'</td></tr>';
+                cont++;
+                limpiar();
+                $("#total").html("$ " + total);
+                $("#total_venta").val(total);
+                evaluar();
+                $('#detalles').append(fila);
+
+
+            }
+            else
+            {
+                alert('La cantidad a vender supera el stock');
+            }
+        }
+        else
+        {
+            alert("Error al ingresar el detalle de la venta, revisa los datos del articulo");
+        }
+   }
 
     function limpiar(){
-        $("#pcantidad").val("");
-        $("#pprecio_compra").val("");
-        $("#pprecio_venta").val("");
+        $("pcantidad").val("");
+        $("pdescuento").val("");
+        $("pprecio_venta").val("");
 
     }
 
     function evaluar(){
         if (total>0){
             $("#guardar").show();
-        }else{
+        } 
+        else {
             $("#guardar").hide();
         }        
     }
@@ -209,6 +239,7 @@
     function eliminar(index){
         total = total - subtotal[index];
         $("#total").html("$ "+ total);
+        $("#total_venta").val(total);
         $("#fila"+index).remove();
         evaluar();
     }
