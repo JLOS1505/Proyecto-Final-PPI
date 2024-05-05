@@ -67,8 +67,8 @@
 
                         <div class="col-2">
                             <div class="form-group">
-                                <label for="pventa">P. y Venta</label>
-                                <input type="number" class="form-control" disabled name="pprecio_venta" id="pprecio_venta" step="0.01" min="0" placeholder="P. Venta">
+                                <label for="pventa">P. de Venta</label>
+                                <input type="number" class="form-control" disabled name="pprecio_venta" id="pprecio_venta" step="0.01" min="0" placeholder="P. de Venta">
                             </div>
                         </div>
 

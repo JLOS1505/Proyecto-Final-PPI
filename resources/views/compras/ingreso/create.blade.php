@@ -60,14 +60,14 @@
 
                         <div class="col-2">
                             <div class="form-group">
-                                <label for="pcompra">P. y Compra</label>
+                                <label for="pcompra">P. de Compra</label>
                                 <input type="number" class="form-control" name="pprecio_compra" id="pprecio_compra" step="0.01" min="0" placeholder="P. Compra">
                             </div>
                         </div>
 
                         <div class="col-2">
                             <div class="form-group">
-                                <label for="pventa">P. y Venta</label>
+                                <label for="pventa">P. de Venta</label>
                                 <input type="number" class="form-control" name="pprecio_venta" id="pprecio_venta" step="0.01" min="0" placeholder="P. Venta">
                             </div>
                         </div>
