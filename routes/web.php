@@ -31,3 +31,7 @@ Route::resource('compras/ingreso', IngresoController::class);
 Route::resource('ventas/venta', VentaController::class);
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
