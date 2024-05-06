@@ -31,7 +31,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="input-group mb-6">
                                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-plus-circle-fill"></i></span>
-                                            <input type="text" class="form-control" name="texto" value="{{$texto}}" placeholder="Buscar categoria" aria-label="Recipent's username" aria-describedby="button-addon2">
+                                            <input type="text" class="form-control" name="texto" value="{{$texto}}" placeholder="Buscar venta" aria-label="Recipent's username" aria-describedby="button-addon2">
                                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>                
                                         </div>
                                     </div>
@@ -65,9 +65,9 @@
                                     @foreach($ventas as $ven)
                                     <tr>
                                         <td>
-                                            <a href="#" class="btn btn-outline-info btn-sm">Detalle</a>
+                                            <a href="{{ route('venta.show', $ven -> id_venta) }}" class="btn btn-outline-info btn-sm">Detalle</a>
                                             <!-- Button trigger -->
-                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#">Eliminar</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $ven->id_venta }}">Eliminar</button>
                                         </td>
                                         <td>{{ $ven->fecha_hora}}</td>
                                         <td>{{ $ven->nombre}}</td>
@@ -77,7 +77,7 @@
                                         <td>{{ $ven->estado}}</td>
 
                                     </tr>
-                                    
+                                    @include('ventas.venta.modal')
                                     @endforeach
                                 </tbody>
                             </table>

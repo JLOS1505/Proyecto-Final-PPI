@@ -33,6 +33,7 @@ class IngresoController extends Controller
         ->join('detalle_ingreso as di', 'di.id_ingreso', '=', 'i.id_ingreso')
         ->select('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado', DB::raw('sum(di.cantidad*di.precio_compra) as total'))
         ->where('i.num_comprobante', 'LIKE', '%'.$query.'%')
+        ->where('i.estado','=','A')
         ->groupBy('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado')
         ->orderBy('i.id_ingreso', 'asc')
         ->paginate(15);

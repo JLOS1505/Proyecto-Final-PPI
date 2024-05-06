@@ -28,6 +28,7 @@ class VentaController extends Controller
         ->join('detalle_venta as dv', 'dv.id_venta', '=', 'v.id_venta')
         ->select('v.id_venta', 'v.fecha_hora', 'p.nombre', 'v.tipo_comprobante', 'v.num_comprobante', 'v.impuesto', 'v.estado', 'v.total_venta')
         ->where('v.num_comprobante', 'LIKE', '%'.$query.'%')
+        ->where('v.estado','=','A')
         ->groupBy('v.id_venta', 'v.fecha_hora', 'p.nombre', 'v.tipo_comprobante', 'v.num_comprobante', 'v.impuesto', 'v.estado')
         ->orderBy('v.id_venta', 'desc')
         ->paginate(10);
@@ -46,7 +47,6 @@ class VentaController extends Controller
          $productos=DB::table('producto as p')
             ->join('detalle_ingreso as di', 'di.id_producto', '=', 'p.id_producto')
             ->select(DB::raw('CONCAT(p.codigo," ",p.nombre) AS Articulo'), 'p.id_producto','p.stock', DB::raw('avg(di.precio_venta) as precio_promedio'))
-            ->where('p.estado','=','Activo')
             ->where('p.stock','>','0')
             ->groupBy('Articulo', 'p.id_producto', 'p.stock')
             ->get();
@@ -106,7 +106,7 @@ class VentaController extends Controller
     {
         //
         $ventas = DB::table('venta as v')
-        ->join('persona as p', 'v.id_venta', '=', 'p.id_persona')
+        ->join('persona as p', 'v.id_cliente', '=', 'p.id_persona')
         ->join('detalle_venta as dv', 'v.id_venta', '=', 'dv.id_venta')
         ->select('v.id_venta', 'v.fecha_hora', 'p.nombre', 'v.tipo_comprobante', 'v.num_comprobante', 'v.impuesto', 'v.estado', 'v.total_venta')
         ->where('v.id_venta', "=", $id)
@@ -114,7 +114,7 @@ class VentaController extends Controller
         
         $detalles = DB::table('detalle_venta as d')
         ->join('producto as p', 'd.id_producto', '=', 'p.id_producto')
-        ->select('p.nombre as producto', 'd.cantidad', 'd.precio_compra', 'd.precio_venta')
+        ->select('p.nombre as producto', 'd.cantidad', 'd.descuento', 'd.precio_venta')
         ->where('d.id_venta', '=', $id)
         ->get();
         return view('ventas.venta.show', ["ventas"=>$ventas, "detalles"=>$detalles]);
