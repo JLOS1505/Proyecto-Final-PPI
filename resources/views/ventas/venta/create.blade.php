@@ -18,7 +18,7 @@
                             <label for="cliente">Cliente</label>
                             <select name="id_cliente" class="form-control" id="id_cliente">
                                     @foreach($personas as $persona)
-                                        <option value="{{$persona->id_persona}}">{{$persona->nombre}}</option>
+                                        <option value="{{$persona->id_persona}}" {{ old('id_cliente') == $persona->id_persona ? 'selected' : '' }}>{{$persona->nombre}}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -27,15 +27,15 @@
                         <div class="form group">
                             <label for="tipo_documento">Tipo de Documento</label>
                             <select name="tipo_documento" class="form-control" id="tipo_documento">
-                                    <option value="RFC">RFC</option>
-                                    <option value="INE">INE</option>
+                                    <option value="RFC" {{ old('tipo_documento') == 'RFC' ? 'selected' : '' }}>RFC</option>
+                                    <option value="INE" {{ old('tipo_documento') == 'INE' ? 'selected' : '' }}>INE</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form group">
                             <label for="num_documento">Número de Documento</label>
-                            <input type="text" class="form-control" name="num_documento" id="num_documento" placeholder="Ingresa el número de documento">
+                            <input type="text" class="form-control" name="num_documento" id="num_documento" value="{{ old('num_documento') }}" placeholder="Ingresa el número de documento">
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="cantidad">Cantidad</label>
-                                <input type="number" class="form-control" name="pcantidad" id="pcantidad" placeholder="Cantidad">
+                                <input type="number" class="form-control" name="pcantidad" id="pcantidad" value="{{ old('pcantidad') }}" placeholder="Cantidad">
                             </div>
                         </div>
 
@@ -75,7 +75,7 @@
                         <div class="col-1">
                             <div class="form-group">
                                 <label for="descuento">Descuento</label>
-                                <input type="number" class="form-control" name="pdescuento" id="pdescuento" step="0.01" min="0" placeholder="Descuento" value="0">
+                                <input type="number" class="form-control" name="pdescuento" id="pdescuento" step="0.01" min="0" placeholder="Descuento"  value="0">
                             </div>
                         </div>
 

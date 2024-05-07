@@ -14,11 +14,17 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="categoria">Nombre</label>
-                    <input type="text" class="form-control" name="categoria" id="categoria" placeholder="Ingresa el nombre de la categoría">
+                    <input type="text" class="form-control" name="categoria" id="categoria" value="{{ old('categoria') }}" placeholder="Ingresa el nombre de la categoría">
+                    @error('categoria')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form group">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Ingresa la descripción">
+                    <input type="text" class="form-control" name="descripcion" id="descripcion" value="{{ old('descripcion') }}" placeholder="Ingresa la descripción">
+                    @error('descripcion')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
 

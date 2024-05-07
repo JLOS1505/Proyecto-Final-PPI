@@ -25,10 +25,10 @@ class ProveedorFormRequest extends FormRequest
             //
             'nombre' => 'required|max:100',
             'tipo_documento' => 'max:50',
-            'num_documento' => 'max:50',
+            'num_documento' => 'required|max:50',
             'direccion' => 'max:250',
-            'telefono' => 'max:10',
-            'email' => 'max:50',
+            'telefono' => 'required|max:10',
+            'email' => 'required|max:50|email',
         ];
     }
 }

@@ -18,7 +18,7 @@
                             <label for="proveedor">Proveedor</label>
                             <select name="id_proveedor" class="form-control" id="id_proveedor">
                                     @foreach($personas as $persona)
-                                        <option value="{{$persona->id_persona}}">{{$persona->nombre}}</option>
+                                        <option value="{{$persona->id_persona}}" {{ old('id_proveedor') == $persona->id_persona ? 'selected' : '' }}>{{$persona->nombre}}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -27,15 +27,15 @@
                         <div class="form group">
                             <label for="tipo_documento">Tipo de Documento</label>
                             <select name="tipo_documento" class="form-control" id="tipo_documento">
-                                    <option value="RFC">RFC</option>
-                                    <option value="TICKET">Ticket</option>
+                                    <option value="RFC" {{ old('tipo_documento') == 'RFC' ? 'selected' : '' }}>RFC</option>
+                                    <option value="TICKET" {{ old('tipo_documento') == 'TICKET' ? 'selected' : '' }}>TICKET</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form group">
                             <label for="num_documento">Número de Documento</label>
-                            <input type="text" class="form-control" name="num_documento" id="num_documento" placeholder="Ingresa el número de documento">
+                            <input type="text" class="form-control" name="num_documento" id="num_documento" value="{{ old('num_documento') }}" placeholder="Ingresa el número de documento">
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                                 <label for="proveedor">Productos</label>
                                 <select name="pidarticulo" class="form-control selectpicker" id="pidarticulo" data-live-search="true">
                                         @foreach($productos as $producto)
-                                            <option value="{{$producto->id_producto}}">{{$producto->Articulo}}</option>
+                                            <option value="{{$producto->id_producto}}" {{ old('pidarticulo') == $producto->id_producto ? 'selected' : '' }}>{{$producto->Articulo}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -54,21 +54,24 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="cantidad">Cantidad</label>
-                                <input type="number" class="form-control" name="pcantidad" id="pcantidad" placeholder="Cantidad">
+                                <input type="number" class="form-control" name="pcantidad" id="pcantidad" value="{{ old('pcantidad') }}" placeholder="Cantidad">
+                               
                             </div>
                         </div>
 
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="pcompra">P. de Compra</label>
-                                <input type="number" class="form-control" name="pprecio_compra" id="pprecio_compra" step="0.01" min="0" placeholder="P. Compra">
+                                <input type="number" class="form-control" name="pprecio_compra" id="pprecio_compra" step="0.01" min="0" value="{{ old('pprecio_compra') }}" placeholder="P. Compra">
+                        
                             </div>
                         </div>
 
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="pventa">P. de Venta</label>
-                                <input type="number" class="form-control" name="pprecio_venta" id="pprecio_venta" step="0.01" min="0" placeholder="P. Venta">
+                                <input type="number" class="form-control" name="pprecio_venta" id="pprecio_venta" step="0.01" min="0" value="{{ old('pprecio_venta') }}" placeholder="P. Venta">
+                              
                             </div>
                         </div>
 
@@ -111,7 +114,7 @@
 
                         
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success me-1 mb-1">Guardar</button>
+                            <button id="guardar" type="submit" class="btn btn-success me-1 mb-1">Guardar</button>
                             <button type="reset" class="btn btn-danger me-1 mb-1">Cancelar</button>
                         </div>
                     </div>
