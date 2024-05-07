@@ -64,7 +64,7 @@
                                     @foreach($usuarios as $user)
                                     <tr>
                                         <td>
-                                            <a href="" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                            <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                             <!-- Button trigger -->
                                             <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-">Eliminar</button>
                                         </td>

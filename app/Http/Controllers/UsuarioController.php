@@ -53,4 +53,22 @@ class UsuarioController extends Controller
         $usuario->save();
         return Redirect::to('seguridad/usuarios');
     }
+
+    public function edit($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view("seguridad/usuarios.edit", ["usuario" => $usuario]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+        $usuario=User::findOrFail($id);
+        $usuario->name=$request->get('nombre');
+        $usuario->email=$request->get('email');
+        $usuario->password=bcrypt($request->get('password'));
+        $usuario->update();
+        return Redirect::to('seguridad/usuarios');
+
+    }
 }
