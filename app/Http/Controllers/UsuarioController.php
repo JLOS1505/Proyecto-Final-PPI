@@ -39,4 +39,18 @@ class UsuarioController extends Controller
        //
        return view("seguridad.usuarios.create");
    }
+
+   /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+        $usuario=new User;
+        $usuario->name=$request->get('nombre');
+        $usuario->email=$request->get('email');
+        $usuario->password=bcrypt($request->get('password'));
+        $usuario->save();
+        return Redirect::to('seguridad/usuarios');
+    }
 }
