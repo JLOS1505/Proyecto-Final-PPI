@@ -24,6 +24,7 @@ class UsuarioController extends Controller
            $query=trim($request->get('texto'));
            
            $usuarios=DB::table('users')->where('name', 'LIKE','%'.$query.'%')
+           ->where('estatus','=','1')
            ->orderBy('id', 'asc')
            ->paginate(7);
            return view('seguridad.usuarios.index', ["usuarios"=>$usuarios,"texto"=>$query]);
@@ -70,5 +71,14 @@ class UsuarioController extends Controller
         $usuario->update();
         return Redirect::to('seguridad/usuarios');
 
+    }
+
+    public function destroy($id)
+    {
+        // Baja lógica, NO se elimina de la base de datos
+        $usuario=User::findOrFail($id);
+        $usuario->estatus=0;
+        $usuario->update();
+        return redirect()->route('usuarios.index');
     }
 }
