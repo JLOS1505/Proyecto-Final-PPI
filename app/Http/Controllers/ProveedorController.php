@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Proveedores;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProveedorFormRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ProveedorCreado;
 use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
@@ -54,6 +56,10 @@ class ProveedorController extends Controller
         $proveedor->email=$request->input('email');
         $proveedor->estatus='1';
         $proveedor->save();
+
+        // Envío del correo
+        $correo = new ProveedorCreado($proveedor);
+        Mail::to($proveedor->email)->send($correo);
         //return Redirect::to('ventas/clientes');
         return redirect()->route('proveedor.index');
     }
