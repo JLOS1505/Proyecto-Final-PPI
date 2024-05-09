@@ -31,7 +31,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="input-group mb-6">
                                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-plus-circle-fill"></i></span>
-                                            <input type="text" class="form-control" name="texto" value="{{$texto}}" placeholder="Buscar categoria" aria-label="Recipent's username" aria-describedby="button-addon2">
+                                            <input type="text" class="form-control" name="texto" value="{{$texto}}" placeholder="Buscar ingreso" aria-label="Recipent's username" aria-describedby="button-addon2">
                                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>                
                                         </div>
                                     </div>
