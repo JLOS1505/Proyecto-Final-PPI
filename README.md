@@ -1,3 +1,18 @@
+<p>Diagrama entidad Relación</p>
+![modelo entidad-relacion](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/393c4472-0d2e-4469-bb33-45ee9ef85339)
+
+El seeder está implementado para la tabla administradores, y se corre de la siguiente forma: php artisan db:seed --class=AdminSeede
+Los archivos en el proyecto son las imagenes que se agregan a los productos.
+
+<p>Capturas del programa: </p>
+![Captura 1](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/251568ff-805d-4b3e-bcdf-605fff866d4b)
+![Captura 2](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/67495ba7-3a8f-4df7-a3ea-c61d00df2b12)
+![Captura 3](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/771e4ec0-5884-41f0-b6f6-d7856bd48730)
+![Captura 4](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/60730598-3e38-4ad8-9346-b678373e2ac7)
+![Captura 5](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/f71f0b4f-91bf-46c4-a0a8-c6d7995e80a0)
+![Captura 6](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/fdb582f8-9016-4859-8818-c1927187ceeb)
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
