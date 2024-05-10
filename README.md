@@ -1,7 +1,7 @@
 ## Diagrama entidad Relación
 ![modelo entidad-relacion](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/393c4472-0d2e-4469-bb33-45ee9ef85339)
 
-El seeder está implementado para la tabla administradores, y se corre de la siguiente forma:
+El seeder está implementado para crear un administrador, y se corre de la siguiente forma:
 
 php artisan db:seed --class=AdminSeeder
 
