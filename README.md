@@ -5,11 +5,12 @@ El seeder está implementado para la tabla administradores, y se corre de la sig
 
 php artisan db:seed --class=AdminSeede
 
+
 Los archivos en el proyecto son las imagenes que se agregan a los productos.
 
 Esta es la plantilla utilizada en el programa: https://adminlte.io/themes/v3/
 
-Capturas del programa:
+## Capturas del programa:
 ![Captura 1](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/251568ff-805d-4b3e-bcdf-605fff866d4b)
 ![Captura 2](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/67495ba7-3a8f-4df7-a3ea-c61d00df2b12)
 ![Captura 3](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/771e4ec0-5884-41f0-b6f6-d7856bd48730)
