@@ -1,10 +1,10 @@
-<p>Diagrama entidad Relación</p>
+Diagrama entidad Relación
 ![modelo entidad-relacion](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/393c4472-0d2e-4469-bb33-45ee9ef85339)
 
 El seeder está implementado para la tabla administradores, y se corre de la siguiente forma: php artisan db:seed --class=AdminSeede
 Los archivos en el proyecto son las imagenes que se agregan a los productos.
 
-<p>Capturas del programa: </p>
+Capturas del programa:
 ![Captura 1](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/251568ff-805d-4b3e-bcdf-605fff866d4b)
 ![Captura 2](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/67495ba7-3a8f-4df7-a3ea-c61d00df2b12)
 ![Captura 3](https://github.com/JLOS1505/Proyecto-Final-PPI/assets/83027338/771e4ec0-5884-41f0-b6f6-d7856bd48730)
