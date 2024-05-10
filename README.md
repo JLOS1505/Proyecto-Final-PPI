@@ -3,7 +3,7 @@
 
 El seeder está implementado para la tabla administradores, y se corre de la siguiente forma:
 
-php artisan db:seed --class=AdminSeede
+php artisan db:seed --class=AdminSeeder
 
 
 Los archivos en el proyecto son las imagenes que se agregan a los productos.
