@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class UsuarioController extends Controller
 {
@@ -20,7 +21,7 @@ class UsuarioController extends Controller
        //
        if ($request)
        {
-           
+
            $query=trim($request->get('texto'));
            
            $usuarios=DB::table('users')->where('name', 'LIKE','%'.$query.'%')
@@ -38,6 +39,9 @@ class UsuarioController extends Controller
    public function create()
    {
        //
+        if (!Gate::allows('create-user')) {
+            abort(403, 'Acceso no autorizado.');
+        }
        return view("seguridad.usuarios.create");
    }
 
@@ -57,6 +61,9 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
+        if (!Gate::allows('edit-user')) {
+            abort(403, 'Acceso no autorizado.');
+        }
         $usuario = User::findOrFail($id);
         return view("seguridad/usuarios.edit", ["usuario" => $usuario]);
     }
@@ -75,7 +82,10 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        // Baja lógica, NO se elimina de la base de datos
+        if (!Gate::allows('delete-user')) {
+            abort(403, 'Acceso no autorizado.');
+        }
+        // Baja lógica, NO se elimina de la base de dato
         $usuario=User::findOrFail($id);
         $usuario->estatus=0;
         $usuario->update();

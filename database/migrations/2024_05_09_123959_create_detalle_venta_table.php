@@ -12,16 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalle_venta', function (Blueprint $table) {
-            $table->id('id_venta');
-            $table->unsignedBigInteger('id_cliente');
-            $table->string('tipo_comprobante', 20);
-            $table->string('num_comprobante', 10);
-            $table->dateTime('fecha_hora');
-            $table->decimal('impuesto', 4, 2);
-            $table->decimal('total_venta', 11, 2);
-            $table->string('estado', 20);
-            $table->foreign('id_cliente')->references('id_persona')->on('persona')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->id('id_detalle_venta');
+            $table->unsignedBigInteger('id_venta');
+            $table->unsignedBigInteger('id_producto');
+            $table->unsignedInteger('cantidad');
+            $table->decimal('precio_venta', 10, 2)->unsigned();
+            $table->decimal('descuento', 10, 2)->unsigned();
             $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('id_venta')
+                  ->references('id_venta')
+                  ->on('venta')
+                  ->onDelete('NO ACTION')
+                  ->onUpdate('NO ACTION');
+
+            $table->foreign('id_producto')
+                  ->references('id_producto')
+                  ->on('producto')
+                  ->onDelete('NO ACTION')
+                  ->onUpdate('NO ACTION');
         });
     }
 
